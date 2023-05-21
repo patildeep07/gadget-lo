@@ -49,3 +49,17 @@
   font-size: 1.2rem;
   margin: 1rem;
 }
+
+.flex-row {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+}
+
+.link-class {
+  margin: 5px 15px;
+  text-decoration: none;
+  color: #22201c;
+  font-size: 26px;
+  font-weight: 500;
+}
