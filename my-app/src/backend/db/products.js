@@ -11,6 +11,7 @@ export const products = [
     title: "Apple iPhone 13",
     price: 62900,
     categoryName: "Mobile",
+    rating: 4.7,
     features: [
       "iOS 15 Operating System",
       "5G Supported",
@@ -27,6 +28,7 @@ export const products = [
     title: "Apple iPhone 14",
     price: 83490,
     categoryName: "Mobile",
+    rating: 4.5,
     features: [
       "iOS 16 Operating System",
       "Apple A15 Bionic chip",
@@ -44,6 +46,7 @@ export const products = [
     title: "OnePlus 10 Pro 5G",
     price: 60999,
     categoryName: "Mobile",
+    rating: 2.5,
     features: [
       "OxygenOS based on Android™12",
       "6.7 inches (17.02 cm) 120Hz Fluid AMOLED with LTPO Display",
@@ -61,6 +64,7 @@ export const products = [
     title: "Samsung Galaxy S22 5G",
     price: 66999,
     categoryName: "Mobile",
+    rating: 3.5,
     features: [
       "OxygenOS based on Android™12",
       "6.7 inches (17.02 cm) 120Hz Fluid AMOLED with LTPO Display",
@@ -78,6 +82,7 @@ export const products = [
     title: "Asus TUF Gaming A15",
     price: 64999,
     categoryName: "Laptop",
+    rating: 4.2,
     features: [
       "OxygenOS based on Android™12",
       "6.7 inches (17.02 cm) 120Hz Fluid AMOLED with LTPO Display",
@@ -95,6 +100,7 @@ export const products = [
     title: "Dell Inspiron 3511",
     price: 44999,
     categoryName: "Laptop",
+    rating: 3.7,
     features: [
       "OxygenOS based on Android™12",
       "6.7 inches (17.02 cm) 120Hz Fluid AMOLED with LTPO Display",
@@ -112,6 +118,7 @@ export const products = [
     title: "Lenovo IdeaPad Flex 5",
     price: 66999,
     categoryName: "Laptop",
+    rating: 1.6,
     features: [
       "OxygenOS based on Android™12",
       "6.7 inches (17.02 cm) 120Hz Fluid AMOLED with LTPO Display",
@@ -129,6 +136,7 @@ export const products = [
     title: "HP Pavilion x360 2-in-1",
     price: 57999,
     categoryName: "Laptop",
+    rating: 2.9,
     features: [
       "OxygenOS based on Android™12",
       "6.7 inches (17.02 cm) 120Hz Fluid AMOLED with LTPO Display",
@@ -146,6 +154,7 @@ export const products = [
     title: "Samsung 108 cm (43 inches) Series 5",
     price: 31612,
     categoryName: "Television",
+    rating: 3.9,
     features: [
       "OxygenOS based on Android™12",
       "6.7 inches (17.02 cm) 120Hz Fluid AMOLED with LTPO Display",
@@ -163,6 +172,7 @@ export const products = [
     title: "Sony 108 cm (43 inches) W830K HD Smart Tv",
     price: 40840,
     categoryName: "Television",
+    rating: 4.6,
     features: [
       "OxygenOS based on Android™12",
       "6.7 inches (17.02 cm) 120Hz Fluid AMOLED with LTPO Display",
@@ -180,6 +190,7 @@ export const products = [
     title: "OnePlus 32 (80cm) 32Y1S Edge HD",
     price: 13999,
     categoryName: "Television",
+    rating: 2.8,
     features: [
       "OxygenOS based on Android™12",
       "6.7 inches (17.02 cm) 120Hz Fluid AMOLED with LTPO Display",
@@ -197,6 +208,7 @@ export const products = [
     title: "LG 80 cm (32 inches) LQ63 HD Smart LED TV",
     price: 23270,
     categoryName: "Television",
+    rating: 3.8,
     features: [
       "OxygenOS based on Android™12",
       "6.7 inches (17.02 cm) 120Hz Fluid AMOLED with LTPO Display",
@@ -214,6 +226,7 @@ export const products = [
     title: "HyperX Alloy Origins Core Tenkeyless Mechanical Gaming Keyboard",
     price: 7457,
     categoryName: "Accessories",
+    rating: 4.1,
     features: [
       "OxygenOS based on Android™12",
       "6.7 inches (17.02 cm) 120Hz Fluid AMOLED with LTPO Display",
@@ -231,6 +244,7 @@ export const products = [
     title: "Lenovo 300 Wireless Compact Mouse, High Resolution 1000 DPI",
     price: 749,
     categoryName: "Accessories",
+    rating: 3.6,
     features: [
       "OxygenOS based on Android™12",
       "6.7 inches (17.02 cm) 120Hz Fluid AMOLED with LTPO Display",
@@ -248,6 +262,7 @@ export const products = [
     title: "Apple MagSafe Charger",
     price: 3999,
     categoryName: "Accessories",
+    rating: 4.8,
     features: [
       "OxygenOS based on Android™12",
       "6.7 inches (17.02 cm) 120Hz Fluid AMOLED with LTPO Display",
