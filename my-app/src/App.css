@@ -63,3 +63,12 @@
   font-size: 26px;
   font-weight: 500;
 }
+
+/* Display card styles */
+
+.display-card {
+  margin: 10px 15px;
+  padding: 20px;
+  width: 300px;
+  border: 1px solid lightgray;
+}
