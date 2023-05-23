@@ -93,25 +93,51 @@ export const Store = () => {
 
         {/* For ratings */}
         <div>
-          <h3>Ratings</h3>
+          <div className="flex-row">
+            <h3>Ratings</h3>
+            <button onClick={() => setAllData({ type: "CLEAR_RATING" })}>
+              Clear
+            </button>
+          </div>
 
           <div className="input-div">
-            <input type="radio" id="rating-4+" name="rating" />
+            <input
+              type="radio"
+              id="rating-4+"
+              name="rating"
+              onChange={() => setAllData({ type: "RATING", payload: 4 })}
+            />
             <label htmlFor="rating-4+">4 stars & above</label>
           </div>
 
           <div className="input-div">
-            <input type="radio" id="rating-3+" name="rating" />
+            <input
+              type="radio"
+              id="rating-3+"
+              name="rating"
+              onChange={() => setAllData({ type: "RATING", payload: 3 })}
+            />
             <label htmlFor="rating-3+">3 stars & above</label>
           </div>
 
           <div className="input-div">
-            <input type="radio" id="rating-2+" name="rating" />
+            <input
+              type="radio"
+              id="rating-2+"
+              name="rating"
+              onChange={() => setAllData({ type: "RATING", payload: 2 })}
+            />
             <label htmlFor="rating-2+">2 stars & above</label>
           </div>
 
           <div className="input-div">
-            <input type="radio" id="rating-1+" name="rating" />
+            <input
+              type="radio"
+              id="rating-1+"
+              name="rating"
+              onChange={() => setAllData({ type: "RATING", payload: 1 })}
+              checked={allData.filterByRating === 1 ? true : false}
+            />
             <label htmlFor="rating-1+">1 stars & above</label>
           </div>
         </div>

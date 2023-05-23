@@ -55,6 +55,16 @@ export const AppProvider = ({ children }) => {
           ...state,
           filterByPriceRange: 99999,
         };
+      case "RATING":
+        return {
+          ...state,
+          filterByRating: action.payload,
+        };
+      case "CLEAR_RATING":
+        return {
+          ...state,
+          filterByRating: 1,
+        };
       default:
         return { ...state };
     }
@@ -64,12 +74,17 @@ export const AppProvider = ({ children }) => {
     filterByPriceLowToHigh: false,
     filterByPriceHighToLow: false,
     filterByPriceRange: 99999,
+    filterByRating: 1,
   });
 
   //   Apply Filters here
 
-  const { filterByPriceHighToLow, filterByPriceLowToHigh, filterByPriceRange } =
-    allData;
+  const {
+    filterByPriceHighToLow,
+    filterByPriceLowToHigh,
+    filterByPriceRange,
+    filterByRating,
+  } = allData;
 
   const sortHighToLowFunction = (list) => {
     if (filterByPriceHighToLow === true) {
@@ -93,8 +108,11 @@ export const AppProvider = ({ children }) => {
 
   const priceRangeHandler = (e) => {
     const givenPrice = e.target.value;
-    console.log(givenPrice);
     setAllData({ type: "PRICE_RANGE", payload: Number(givenPrice) });
+  };
+
+  const filterRatingFunction = (list) => {
+    return list.filter(({ rating }) => rating >= filterByRating);
   };
 
   const applyFilters = () => {
@@ -110,9 +128,11 @@ export const AppProvider = ({ children }) => {
       filteredByLowToHighList
     );
 
+    const filteredByRatingList = filterRatingFunction(filteredByPriceRangeList);
+
     setProductData({
       ...productData,
-      storeList: [...filteredByPriceRangeList],
+      storeList: [...filteredByRatingList],
     });
   };
 
