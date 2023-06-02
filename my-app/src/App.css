@@ -50,6 +50,8 @@
   margin: 1rem;
 }
 
+/* Flex */
+
 .flex-row {
   display: flex;
   flex-direction: row;

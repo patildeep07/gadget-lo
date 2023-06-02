@@ -65,6 +65,22 @@ export const AppProvider = ({ children }) => {
           ...state,
           filterByRating: 1,
         };
+      case "UPDATE_CATEGORY":
+        return {
+          ...state,
+          filterByCategories: state.filterByCategories.includes(action.payload)
+            ? [
+                ...state.filterByCategories.filter(
+                  (item) => item !== action.payload
+                ),
+              ]
+            : [...state.filterByCategories, action.payload],
+        };
+      case "RESET_CATEGORY":
+        return {
+          ...state,
+          filterByCategories: [],
+        };
       default:
         return { ...state };
     }
@@ -75,6 +91,7 @@ export const AppProvider = ({ children }) => {
     filterByPriceHighToLow: false,
     filterByPriceRange: 99999,
     filterByRating: 1,
+    filterByCategories: [],
   });
 
   //   Apply Filters here
@@ -84,6 +101,7 @@ export const AppProvider = ({ children }) => {
     filterByPriceLowToHigh,
     filterByPriceRange,
     filterByRating,
+    filterByCategories,
   } = allData;
 
   const sortHighToLowFunction = (list) => {
@@ -115,6 +133,16 @@ export const AppProvider = ({ children }) => {
     return list.filter(({ rating }) => rating >= filterByRating);
   };
 
+  const filterCategoryFunction = (list) => {
+    return list.reduce((acc, product) => {
+      return filterByCategories.includes(product.categoryName)
+        ? [...acc, product]
+        : [...acc];
+    }, []);
+  };
+
+  // Apply filters here
+
   const applyFilters = () => {
     const filteredByHighToLowList = sortHighToLowFunction([
       ...productData.productList,
@@ -130,9 +158,16 @@ export const AppProvider = ({ children }) => {
 
     const filteredByRatingList = filterRatingFunction(filteredByPriceRangeList);
 
+    const filteredByCategoryList =
+      filterByCategories.length === 0
+        ? filteredByRatingList
+        : filterCategoryFunction(filteredByRatingList);
+
+    // const filteredByCategoryList = filterCategoryFunction(filteredByRatingList);
+
     setProductData({
       ...productData,
-      storeList: [...filteredByRatingList],
+      storeList: [...filteredByCategoryList],
     });
   };
 

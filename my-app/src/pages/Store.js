@@ -41,6 +41,7 @@ export const Store = () => {
             />
             <label htmlFor="price-LowtoHigh">Low to High</label>
           </div>
+          <hr />
         </div>
 
         {/* For Price Range */}
@@ -64,31 +65,76 @@ export const Store = () => {
             <p>0</p>
             <p>85K</p>
           </div>
+          <hr />
         </div>
 
         {/* For Categories */}
         <div>
-          <h3>Categories</h3>
+          <div className="flex-row">
+            <h3>Categories</h3>
+            <button onClick={() => setAllData({ type: "RESET_CATEGORY" })}>
+              Reset
+            </button>
+          </div>
 
           <div className="input-div">
-            <input type="checkbox" id="category-mobile" />
+            <input
+              type="checkbox"
+              id="category-mobile"
+              onChange={() =>
+                setAllData({ type: "UPDATE_CATEGORY", payload: "Mobile" })
+              }
+              checked={
+                allData.filterByCategories.includes("Mobile") ? true : false
+              }
+            />
             <label htmlFor="category-mobile">Mobile</label>
           </div>
 
           <div className="input-div">
-            <input type="checkbox" id="category-laptop" />
+            <input
+              type="checkbox"
+              id="category-laptop"
+              onChange={() =>
+                setAllData({ type: "UPDATE_CATEGORY", payload: "Laptop" })
+              }
+              checked={
+                allData.filterByCategories.includes("Laptop") ? true : false
+              }
+            />
             <label htmlFor="category-laptop">Laptop</label>
           </div>
 
           <div className="input-div">
-            <input type="checkbox" id="category-television" />
+            <input
+              type="checkbox"
+              id="category-television"
+              onChange={() =>
+                setAllData({ type: "UPDATE_CATEGORY", payload: "Television" })
+              }
+              checked={
+                allData.filterByCategories.includes("Television") ? true : false
+              }
+            />
             <label htmlFor="category-television">Television</label>
           </div>
 
           <div className="input-div">
-            <input type="checkbox" id="category-accessories" />
+            <input
+              type="checkbox"
+              id="category-accessories"
+              onChange={() =>
+                setAllData({ type: "UPDATE_CATEGORY", payload: "Accessories" })
+              }
+              checked={
+                allData.filterByCategories.includes("Accessories")
+                  ? true
+                  : false
+              }
+            />
             <label htmlFor="category-accessories">Accessories</label>
           </div>
+          <hr />
         </div>
 
         {/* For ratings */}
@@ -96,7 +142,7 @@ export const Store = () => {
           <div className="flex-row">
             <h3>Ratings</h3>
             <button onClick={() => setAllData({ type: "CLEAR_RATING" })}>
-              Clear
+              Reset
             </button>
           </div>
 
@@ -140,6 +186,7 @@ export const Store = () => {
             />
             <label htmlFor="rating-1+">1 stars & above</label>
           </div>
+          <hr />
         </div>
       </div>
 
