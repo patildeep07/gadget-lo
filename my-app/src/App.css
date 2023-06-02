@@ -50,6 +50,11 @@
   margin: 1rem;
 }
 
+a {
+  text-decoration: none;
+  color: inherit;
+}
+
 /* Flex */
 
 .flex-row {

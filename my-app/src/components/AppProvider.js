@@ -9,6 +9,8 @@ export const AppProvider = ({ children }) => {
     storeList: [],
   });
 
+  const [categoryData, setCategoryData] = useState([]);
+
   const getData = async () => {
     try {
       const products = await fetch("api/products");
@@ -18,6 +20,10 @@ export const AppProvider = ({ children }) => {
         productList: [...allProducts.products],
         storeList: [...allProducts.products],
       });
+
+      const category = await fetch("api/categories");
+      const allCategories = await category.json();
+      setCategoryData(allCategories.categories);
     } catch (error) {
       console.log(error);
     }
@@ -75,6 +81,11 @@ export const AppProvider = ({ children }) => {
                 ),
               ]
             : [...state.filterByCategories, action.payload],
+        };
+      case "UPDATE_CATEGORY_HOME":
+        return {
+          ...state,
+          filterByCategories: [action.payload],
         };
       case "RESET_CATEGORY":
         return {
@@ -183,7 +194,13 @@ export const AppProvider = ({ children }) => {
 
   return (
     <AppContext.Provider
-      value={{ productData, allData, setAllData, priceRangeHandler }}
+      value={{
+        productData,
+        allData,
+        setAllData,
+        priceRangeHandler,
+        categoryData,
+      }}
     >
       {children}
     </AppContext.Provider>

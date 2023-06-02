@@ -1,0 +1,72 @@
+/* Grid Design
+
+.landing-slide {
+  grid-area: landingSlide;
+}
+
+.category-slide {
+  grid-area: categorySlide;
+}
+
+.layout {
+  display: grid;
+  grid-template-areas:
+    "landingSlide "
+    "categorySlide ";
+} */
+
+/* Styling */
+
+.landing-slide {
+  height: 100vh;
+  /* width: 100vw; */
+  background-image: url("../media/landingPage.jpg");
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+
+  display: flex;
+  justify-content: end;
+  align-items: end;
+}
+
+.landing-content-layer button {
+  margin: 0 50px 150px 0;
+
+  border: none;
+  border-radius: 5px;
+  padding: 20px;
+  background-color: aliceblue;
+  width: 350px;
+  color: #f4b647;
+
+  font-weight: 700;
+  font-size: 18px;
+
+  cursor: crosshair;
+}
+
+.landing-content-layer button:hover {
+  color: aliceblue;
+  background-color: #f4b647;
+}
+
+.category-slide {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-items: center;
+}
+
+.category-box {
+  background-color: antiquewhite;
+  border-radius: 5px;
+  padding: 20px;
+  margin: 20px;
+  width: 500px;
+  height: 200px;
+}
+
+.category-box:hover {
+  background-color: beige;
+}
