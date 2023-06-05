@@ -28,11 +28,14 @@ function App() {
         {!isLoggedIn && <Route path="/cart" element={<Login />}></Route>}
         {!isLoggedIn && <Route path="/wishlist" element={<Login />}></Route>}
 
-        <Route path="/profile" element={<Profile />}></Route>
-        <Route path="/mockman" element={<Mockman />}></Route>
+        {isLoggedIn && <Route path="/profile" element={<Profile />}></Route>}
+        {!isLoggedIn && <Route path="/profile" element={<Login />}></Route>}
+
         <Route path="/login" element={<Login />} />
-        <Route path="*" element={<h1>This page doesn't exist...</h1>}></Route>
         <Route path="/signup" element={<Signup />} />
+
+        <Route path="*" element={<h1>This page doesn't exist...</h1>}></Route>
+        <Route path="/mockman" element={<Mockman />}></Route>
       </Routes>
     </div>
   );

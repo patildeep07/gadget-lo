@@ -78,8 +78,10 @@ export const Login = () => {
       )}
       {isLoggedIn && (
         <div>
-          <h1>You are logged In</h1>
-          <button onClick={logout}>Logout</button>
+          <h1>You are now logged In</h1>
+          <Link to="/profile" style={{ textDecoration: "underline" }}>
+            Go to profile
+          </Link>
         </div>
       )}
     </div>

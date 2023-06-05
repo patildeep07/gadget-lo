@@ -1,5 +1,6 @@
 import { createContext, useEffect, useReducer, useState } from "react";
 import axios from "axios";
+import { useNavigate } from "react-router-dom";
 
 export const AppContext = createContext();
 
@@ -11,6 +12,8 @@ export const AppProvider = ({ children }) => {
   });
 
   const [categoryData, setCategoryData] = useState([]);
+
+  const navigate = useNavigate();
 
   const getData = async () => {
     try {
@@ -101,6 +104,11 @@ export const AppProvider = ({ children }) => {
           ...state,
           filterByCategories: [],
         };
+      case "INPUT_SEARCH":
+        return {
+          ...state,
+          filterBySearch: action.payload,
+        };
       default:
         return { ...state };
     }
@@ -112,6 +120,7 @@ export const AppProvider = ({ children }) => {
     filterByPriceRange: 99999,
     filterByRating: 1,
     filterByCategories: [],
+    filterBySearch: "",
   });
 
   //   Apply Filters here
@@ -122,6 +131,7 @@ export const AppProvider = ({ children }) => {
     filterByPriceRange,
     filterByRating,
     filterByCategories,
+    filterBySearch,
   } = allData;
 
   const sortHighToLowFunction = (list) => {
@@ -161,6 +171,18 @@ export const AppProvider = ({ children }) => {
     }, []);
   };
 
+  const searchHandler = (e) => {
+    e.preventDefault();
+    setAllData({ type: "INPUT_SEARCH", payload: e.target.value });
+    navigate("/store");
+  };
+
+  const filterSearchFunction = (list) => {
+    return list.filter(({ title }) =>
+      title.toLowerCase().includes(filterBySearch.toLowerCase())
+    );
+  };
+
   // Apply filters here
 
   const applyFilters = () => {
@@ -183,11 +205,14 @@ export const AppProvider = ({ children }) => {
         ? filteredByRatingList
         : filterCategoryFunction(filteredByRatingList);
 
-    // const filteredByCategoryList = filterCategoryFunction(filteredByRatingList);
+    const filteredBySearchList =
+      filterBySearch === ""
+        ? filteredByCategoryList
+        : filterSearchFunction(filteredByCategoryList);
 
     setProductData({
       ...productData,
-      storeList: [...filteredByCategoryList],
+      storeList: [...filteredBySearchList],
     });
   };
 
@@ -209,6 +234,7 @@ export const AppProvider = ({ children }) => {
         setAllData,
         priceRangeHandler,
         categoryData,
+        searchHandler,
       }}
     >
       {children}

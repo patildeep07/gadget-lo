@@ -71,6 +71,18 @@ a {
   font-weight: 500;
 }
 
+/* Header */
+
+.header {
+  padding: 10px 0;
+  align-items: center;
+}
+
+.search-input {
+  border-radius: 10px;
+  height: 30px;
+}
+
 /* Display card styles */
 
 .display-card {
