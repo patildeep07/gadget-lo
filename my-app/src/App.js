@@ -7,19 +7,32 @@ import { Cart } from "./pages/Cart";
 import { Wishlist } from "./pages/Wishlist";
 import { Profile } from "./pages/Profile";
 import { Header } from "./components/Header";
+import { Login } from "./pages/Login";
+import { useContext } from "react";
+import { AuthContext } from "./context/AuthProvider";
+import { Signup } from "./pages/Signup";
 
 function App() {
+  const { loggedIn, auth } = useContext(AuthContext);
+  const { isLoggedIn } = auth;
   return (
     <div className="App">
       <Header />
       <Routes>
         <Route path="/" element={<Home />}></Route>
         <Route path="/store" element={<Store />}></Route>
-        <Route path="/cart" element={<Cart />}></Route>
-        <Route path="/wishlist" element={<Wishlist />}></Route>
+
+        {isLoggedIn && <Route path="/cart" element={<Cart />}></Route>}
+        {isLoggedIn && <Route path="/wishlist" element={<Wishlist />}></Route>}
+
+        {!isLoggedIn && <Route path="/cart" element={<Login />}></Route>}
+        {!isLoggedIn && <Route path="/wishlist" element={<Login />}></Route>}
+
         <Route path="/profile" element={<Profile />}></Route>
         <Route path="/mockman" element={<Mockman />}></Route>
+        <Route path="/login" element={<Login />} />
         <Route path="*" element={<h1>This page doesn't exist...</h1>}></Route>
+        <Route path="/signup" element={<Signup />} />
       </Routes>
     </div>
   );

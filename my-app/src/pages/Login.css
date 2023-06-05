@@ -1,0 +1,21 @@
+.login-form,
+.signup-form {
+  border: 1px solid black;
+  margin: 20px;
+  padding: 20px;
+
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.login-form div,
+button {
+  margin: 10px;
+}
+
+.signup-form div,
+button {
+  margin: 10px;
+}

@@ -1,5 +1,5 @@
 import { useContext } from "react";
-import { AppContext } from "../components/AppProvider";
+import { AppContext } from "../context/AppProvider";
 import { DisplayProductCards } from "../components/DisplayProductCards";
 import "./Store.css";
 

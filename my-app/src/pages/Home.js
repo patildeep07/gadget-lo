@@ -1,7 +1,7 @@
 import { useContext } from "react";
 import "./Home.css";
 import { Link } from "react-router-dom";
-import { AppContext } from "../components/AppProvider";
+import { AppContext } from "../context/AppProvider";
 
 export const Home = () => {
   const { categoryData, setAllData } = useContext(AppContext);

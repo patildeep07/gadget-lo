@@ -1,4 +1,5 @@
 import { createContext, useEffect, useReducer, useState } from "react";
+import axios from "axios";
 
 export const AppContext = createContext();
 
@@ -13,17 +14,25 @@ export const AppProvider = ({ children }) => {
 
   const getData = async () => {
     try {
-      const products = await fetch("api/products");
-      const allProducts = await products.json();
-      setProductData({
-        ...productData,
-        productList: [...allProducts.products],
-        storeList: [...allProducts.products],
-      });
+      const { status: productStatus, data: dataProducts } = await axios.get(
+        "api/products"
+      );
 
-      const category = await fetch("api/categories");
-      const allCategories = await category.json();
-      setCategoryData(allCategories.categories);
+      if (productStatus === 200) {
+        setProductData({
+          ...productData,
+          productList: [...dataProducts.products],
+          storeList: [...dataProducts.products],
+        });
+      }
+
+      const { status: categoryStatus, data: dataCategories } = await axios.get(
+        "api/categories"
+      );
+
+      if (categoryStatus === 200) {
+        setCategoryData([...dataCategories.categories]);
+      }
     } catch (error) {
       console.log(error);
     }

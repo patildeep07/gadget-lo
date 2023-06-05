@@ -17,8 +17,8 @@ export const Header = () => {
         <Link to="/wishlist" className="link-class">
           Wishlist
         </Link>
-        <Link to="/mockman" className="link-class">
-          Mockman
+        <Link to="/login" className="link-class">
+          Login
         </Link>
       </div>
     </div>
