@@ -1,7 +1,14 @@
+import { useContext } from "react";
 import "../App.css";
+import { AppContext } from "../context/AppProvider";
+import { useNavigate } from "react-router-dom";
 
 export const DisplayProductCards = ({ item }) => {
-  const { title, categoryName, price, rating } = item;
+  const { title, categoryName, price, rating, inCart, inWishlist, _id } = item;
+  const { addToCart, addToWishlist, isInCart, isInWishlist } =
+    useContext(AppContext);
+  const navigate = useNavigate();
+
   return (
     <div className="display-card">
       <h2>{title}</h2>
@@ -12,8 +19,19 @@ export const DisplayProductCards = ({ item }) => {
         Rating: <span style={{ fontWeight: "bold" }}>{rating}</span>{" "}
       </p>
       <h3>Price: Rs. {price} </h3>
-      <button>Add to cart</button>
-      <button>Add to wishList</button>
+      {!isInCart(_id) && (
+        <button onClick={() => addToCart(item)}>Add to cart</button>
+      )}
+      {isInCart(_id) && (
+        <button onClick={() => navigate("/cart")}>Go to cart</button>
+      )}
+
+      {!isInWishlist(_id) && (
+        <button onClick={() => addToWishlist(item)}>Add to wishList</button>
+      )}
+      {isInWishlist(_id) && (
+        <button onClick={() => navigate("/wishlist")}>Go to wishList</button>
+      )}
     </div>
   );
 };

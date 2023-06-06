@@ -12,6 +12,12 @@ export const Store = () => {
   return (
     <div className="flex-row">
       <div className="filters-section">
+        <div className="flex-row">
+          <h3>FILTERS: </h3>
+          <button onClick={() => setAllData({ type: "CLEAR_ALL" })}>
+            Clear All
+          </button>
+        </div>
         {/* For Price */}
         <div>
           <div className="flex-row">
@@ -192,7 +198,10 @@ export const Store = () => {
 
       {/* Product cart */}
       <div className="container-products">
-        <h2>PRODUCT CART</h2>
+        <h2>
+          PRODUCTS:{" "}
+          <span style={{ fontWeight: "lighter" }}>{storeList.length}</span>
+        </h2>
         {storeList.length === 0 && <h2>No products to display</h2>}
         {storeList.length > 0 && (
           <div className="products-section">

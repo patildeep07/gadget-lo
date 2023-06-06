@@ -1,6 +1,13 @@
-import { createContext, useEffect, useReducer, useState } from "react";
+import {
+  createContext,
+  useContext,
+  useEffect,
+  useReducer,
+  useState,
+} from "react";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
+import { AuthContext } from "./AuthProvider";
 
 export const AppContext = createContext();
 
@@ -14,6 +21,8 @@ export const AppProvider = ({ children }) => {
   const [categoryData, setCategoryData] = useState([]);
 
   const navigate = useNavigate();
+  const { auth } = useContext(AuthContext);
+  const { isLoggedIn } = auth;
 
   const getData = async () => {
     try {
@@ -83,6 +92,17 @@ export const AppProvider = ({ children }) => {
           ...state,
           filterByRating: 1,
         };
+      case "CLEAR_ALL": {
+        return {
+          ...state,
+          filterByPriceLowToHigh: false,
+          filterByPriceHighToLow: false,
+          filterByPriceRange: 99999,
+          filterByRating: 1,
+          filterByCategories: [],
+          filterBySearch: "",
+        };
+      }
       case "UPDATE_CATEGORY":
         return {
           ...state,
@@ -109,6 +129,16 @@ export const AppProvider = ({ children }) => {
           ...state,
           filterBySearch: action.payload,
         };
+      case "SET_CART_ITEMS":
+        return {
+          ...state,
+          cart: action.payload,
+        };
+      case "SET_WISHLIST_ITEMS":
+        return {
+          ...state,
+          wishlist: action.payload,
+        };
       default:
         return { ...state };
     }
@@ -121,9 +151,11 @@ export const AppProvider = ({ children }) => {
     filterByRating: 1,
     filterByCategories: [],
     filterBySearch: "",
+    cart: [],
+    wishlist: [],
   });
 
-  //   Apply Filters here
+  // Destructuring data
 
   const {
     filterByPriceHighToLow,
@@ -132,7 +164,212 @@ export const AppProvider = ({ children }) => {
     filterByRating,
     filterByCategories,
     filterBySearch,
+    cart,
+    wishlist,
   } = allData;
+
+  // Cart Handler here
+
+  const encodedToken = localStorage.getItem("token");
+
+  const getCart = async (encodedToken) => {
+    try {
+      const response = await axios.get("/api/user/cart", {
+        headers: {
+          authorization: encodedToken,
+        },
+      });
+      if (response.status === 200) {
+        return response;
+      }
+    } catch (error) {
+      alert(error);
+    }
+  };
+
+  const setCart = async () => {
+    try {
+      const cartResponse = await getCart(encodedToken);
+
+      if (cartResponse.status === 200) {
+        setAllData({
+          type: "SET_CART_ITEMS",
+          payload: cartResponse?.data?.cart,
+        });
+      }
+    } catch (error) {
+      alert(error);
+    }
+  };
+
+  const addToCart = async (givenProduct) => {
+    try {
+      if (isLoggedIn) {
+        const { status, data } = await axios.post(
+          "/api/user/cart",
+          {
+            product: { ...givenProduct },
+          },
+          {
+            headers: {
+              authorization: encodedToken,
+            },
+          }
+        );
+
+        if (status === 201) {
+          setAllData({ type: "SET_CART_ITEMS", payload: data?.cart });
+
+          alert("Added to cart");
+        }
+      } else {
+        navigate("/login");
+      }
+    } catch (error) {
+      alert(error);
+    }
+  };
+
+  const handleQuantity = async (productId, type) => {
+    try {
+      const { status, data } = await axios.post(
+        `api/user/cart/${productId}`,
+        { action: { type } },
+        {
+          headers: {
+            authorization: encodedToken,
+          },
+        }
+      );
+
+      if (status === 200) {
+        setAllData({ type: "SET_CART_ITEMS", payload: data?.cart });
+        alert(`Quantity has been ${type}ed`);
+      }
+    } catch (error) {
+      alert(error);
+    }
+  };
+
+  const removeFromCart = async (productId, givenProduct) => {
+    try {
+      const { status, data } = await axios.delete(
+        `/api/user/cart/${productId}`,
+        {
+          headers: {
+            authorization: encodedToken,
+          },
+        }
+      );
+
+      if (status === 200) {
+        setAllData({ type: "SET_CART_ITEMS", payload: data?.cart });
+        alert("Product removed from cart.");
+      }
+    } catch (error) {
+      alert(error);
+    }
+  };
+
+  // is in cart?
+
+  const isInCart = (givenProductId) => {
+    if (cart.length > 0) {
+      const confirmArray = cart.filter(({ _id }) => _id === givenProductId);
+      return confirmArray.length > 0 ? true : false;
+    }
+  };
+
+  // Wishlist handlers here
+
+  const getWishlist = async (encodedToken) => {
+    try {
+      const response = await axios.get("/api/user/wishlist", {
+        headers: {
+          authorization: encodedToken,
+        },
+      });
+      if (response.status === 200) {
+        return response;
+      }
+    } catch (error) {
+      alert(error);
+    }
+  };
+
+  const setWishlist = async () => {
+    try {
+      const wishlistResponse = await getWishlist(encodedToken);
+
+      if (wishlistResponse.status === 200) {
+        setAllData({
+          type: "SET_WISHLIST_ITEMS",
+          payload: wishlistResponse?.data?.cart,
+        });
+      }
+    } catch (error) {
+      alert(error);
+    }
+  };
+
+  const addToWishlist = async (givenProduct) => {
+    try {
+      if (isLoggedIn) {
+        const { status, data } = await axios.post(
+          "/api/user/wishlist",
+          {
+            product: { ...givenProduct },
+          },
+          {
+            headers: {
+              authorization: encodedToken,
+            },
+          }
+        );
+
+        if (status === 201) {
+          setAllData({ type: "SET_WISHLIST_ITEMS", payload: data?.wishlist });
+
+          alert("Added to wishlist");
+        }
+      } else {
+        navigate("/login");
+      }
+    } catch (error) {
+      alert(error);
+    }
+  };
+
+  const removeFromWishlist = async (productId, givenProduct) => {
+    try {
+      const { status, data } = await axios.delete(
+        `/api/user/wishlist/${productId}`,
+        {
+          headers: {
+            authorization: encodedToken,
+          },
+        }
+      );
+
+      if (status === 200) {
+        setAllData({ type: "SET_WISHLIST_ITEMS", payload: data?.wishlist });
+        alert("Product removed from wishlist.");
+      }
+    } catch (error) {
+      alert(error);
+    }
+  };
+
+  // is in wishlist?
+
+  const isInWishlist = (givenProductId) => {
+    if (wishlist.length > 0) {
+      const confirmArray = wishlist.filter(({ _id }) => _id === givenProductId);
+      return confirmArray.length > 0 ? true : false;
+    }
+  };
+
+  //   Apply Filters here
 
   const sortHighToLowFunction = (list) => {
     if (filterByPriceHighToLow === true) {
@@ -220,6 +457,10 @@ export const AppProvider = ({ children }) => {
 
   useEffect(() => {
     getData();
+    if (isLoggedIn) {
+      setCart(encodedToken);
+      setWishlist(encodedToken);
+    }
   }, []);
 
   useEffect(() => {
@@ -235,6 +476,13 @@ export const AppProvider = ({ children }) => {
         priceRangeHandler,
         categoryData,
         searchHandler,
+        addToCart,
+        handleQuantity,
+        removeFromCart,
+        addToWishlist,
+        removeFromWishlist,
+        isInCart,
+        isInWishlist,
       }}
     >
       {children}
