@@ -12,6 +12,7 @@ import { useContext } from "react";
 import { AuthContext } from "./context/AuthProvider";
 import { Signup } from "./pages/Signup";
 import { SingleItem } from "./pages/SingleItem";
+import { Checkout } from "./pages/Checkout";
 
 function App() {
   const { loggedIn, auth } = useContext(AuthContext);
@@ -23,6 +24,7 @@ function App() {
         <Route path="/" element={<Home />}></Route>
         <Route path="/store" element={<Store />}></Route>
         <Route path="/product/:productId" element={<SingleItem />} />
+        <Route path="/checkout" element={<Checkout />} />
 
         {isLoggedIn && <Route path="/cart" element={<Cart />}></Route>}
         {isLoggedIn && <Route path="/wishlist" element={<Wishlist />}></Route>}

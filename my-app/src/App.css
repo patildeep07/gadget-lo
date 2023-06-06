@@ -73,7 +73,7 @@ a {
   justify-content: space-evenly;
 
   border: 1px solid lightgray;
-  margin: 20px 20%;
+  margin: 20px 10%;
   padding: 20px;
 }
 
@@ -95,6 +95,8 @@ a {
 .search-input {
   border-radius: 10px;
   height: 30px;
+  width: 300px;
+  padding: 0 10px;
 }
 
 /* Display card styles */
