@@ -2,6 +2,7 @@ import { useContext } from "react";
 import { AuthContext } from "../context/AuthProvider";
 import { useNavigate } from "react-router-dom";
 import "./Profile.css";
+import { AddressComponent } from "../components/AddressComponent";
 
 export const Profile = () => {
   const { auth, logout } = useContext(AuthContext);
@@ -19,7 +20,11 @@ export const Profile = () => {
       <h1>
         Welcome, {firstName} {lastName}
       </h1>
-      <p>Email: {email}</p>
+      <p>
+        <span style={{ fontWeight: "bold" }}>Email:</span> {email}
+      </p>
+
+      <AddressComponent />
       <button onClick={logoutHandler}>Logout</button>
     </div>
   );

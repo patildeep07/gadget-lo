@@ -17,11 +17,14 @@ export const Cart = () => {
           Total Price: INR{" "}
           {cart.reduce((acc, { price, qty }) => acc + qty * price, 0)}
         </h4>
-        <div>
-          <Link to="/checkout" style={{ textDecoration: "underline" }}>
-            Proceed to checkout
-          </Link>
-        </div>
+        {cart.length > 0 && (
+          <div>
+            <Link to="/checkout" style={{ textDecoration: "underline" }}>
+              Proceed to checkout
+            </Link>
+          </div>
+        )}
+
         <div>
           <Link to="/wishlist" style={{ textDecoration: "underline" }}>
             Go to Wishlist

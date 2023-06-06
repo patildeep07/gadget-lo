@@ -1,6 +1,7 @@
 import { useContext } from "react";
 import { Link } from "react-router-dom";
 import { AppContext } from "../context/AppProvider";
+import { AddressComponent } from "../components/AddressComponent";
 
 export const Checkout = () => {
   const { allData } = useContext(AppContext);
@@ -21,13 +22,11 @@ export const Checkout = () => {
               </li>
             ))}
           </ol>
+          <h3>Select an Address</h3>
         </div>
         <div className="order-summary">
           <h3>Order Summary</h3>
-          <div>
-            <label>Select Address</label>
-            <select style={{ width: "100px" }}></select>
-          </div>
+
           <div>
             <p>Cart Value: INR {cartValue} </p>
           </div>

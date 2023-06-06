@@ -18,11 +18,27 @@ export const AppProvider = ({ children }) => {
     storeList: [],
   });
 
+  // Category Data
   const [categoryData, setCategoryData] = useState([]);
 
   const navigate = useNavigate();
   const { auth } = useContext(AuthContext);
   const { isLoggedIn } = auth;
+
+  // Default Address
+
+  const defaultAddress = [
+    {
+      id: 1,
+      name: "Deep Patil",
+      house: "A3, Flat: 904 , Indus Valley",
+      city: "Thane",
+      state: "Maharashtra",
+      country: "India",
+      pincode: "400605",
+      mobileNumber: "9876543210",
+    },
+  ];
 
   const getData = async () => {
     try {
@@ -139,6 +155,50 @@ export const AppProvider = ({ children }) => {
           ...state,
           wishlist: action.payload,
         };
+      case "SET_USER_ADDRESS":
+        return {
+          ...state,
+          address: [...state?.address, action.payload],
+        };
+      case "DELETE_USER_ADDRESS":
+        return {
+          ...state,
+          address: state?.address.filter(({ id }) => id !== action.payload),
+        };
+      case "EDIT_ADDRESS":
+        return {
+          ...state,
+          address: state?.address?.map((addressItem) =>
+            addressItem.id === action.payload
+              ? { ...addressItem, isEdit: true }
+              : addressItem
+          ),
+        };
+      case "SAVE_ADDRESS":
+        return {
+          ...state,
+          address: state.address.map((addressItem) =>
+            addressItem.id === action.payload[1]
+              ? { ...action.payload[0] }
+              : addressItem
+          ),
+        };
+      case "CANCEL_ADDRESS":
+        return {
+          ...state,
+          address: state.address.map((addressItem) =>
+            addressItem.id === action.payload
+              ? { ...addressItem, isEdit: false }
+              : addressItem
+          ),
+        };
+      case "DELETE_ADDRESS":
+        return {
+          ...state,
+          address: state?.address?.map(
+            (addressItem) => addressItem.id !== action.payload
+          ),
+        };
       default:
         return { ...state };
     }
@@ -153,6 +213,7 @@ export const AppProvider = ({ children }) => {
     filterBySearch: "",
     cart: [],
     wishlist: [],
+    address: defaultAddress,
   });
 
   // Destructuring data
@@ -168,9 +229,9 @@ export const AppProvider = ({ children }) => {
     wishlist,
   } = allData;
 
-  // Cart Handler here
-
   const encodedToken = localStorage.getItem("token");
+
+  // Cart Handler here
 
   const getCart = async (encodedToken) => {
     try {
