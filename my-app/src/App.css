@@ -63,6 +63,20 @@ a {
   justify-content: space-between;
 }
 
+.flex-row .space-evenly h1 {
+  color: red;
+}
+
+.flex-row-space-evenly {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-evenly;
+
+  border: 1px solid lightgray;
+  margin: 20px 20%;
+  padding: 20px;
+}
+
 .link-class {
   margin: 5px 15px;
   text-decoration: none;
@@ -90,4 +104,9 @@ a {
   padding: 20px;
   width: 300px;
   border: 1px solid lightgray;
+}
+
+.display-card img {
+  height: 250px;
+  width: 200px;
 }

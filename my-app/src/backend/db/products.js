@@ -9,6 +9,8 @@ export const products = [
   {
     _id: uuid(),
     title: "Apple iPhone 13",
+    thumbnail:
+      "https://encrypted-tbn0.gstatic.com/shopping?q=tbn:ANd9GcTN44Mj53RrX4AEq-L6rD0rB3xxu3nWVDljhZN3MeSlevsaAOk4OK4HM707Ziiyc3vdHaR_1hKS9OXp9-lRTtlGJFzdkx70CzR9PtakYoEZwTVBDadBVgBCPPSC7A9oloq6mCc&usqp=CAc",
     price: 62900,
     categoryName: "Mobile",
     rating: 4.7,
@@ -26,6 +28,8 @@ export const products = [
   {
     _id: uuid(),
     title: "Apple iPhone 14",
+    thumbnail:
+      "https://encrypted-tbn1.gstatic.com/shopping?q=tbn:ANd9GcQTS--J7iTNFVxljpJMZkEuYfaB7ndp4ro49exutU5vcydZvO92n1V953N8EdawGMav6JYicKtiRhxNIw1ZSRNOt9TcRgVhJY1-avSp-yX_EWzjE5Sxlj-qNKHsGKBvqm2aqw&usqp=CAc",
     price: 83490,
     categoryName: "Mobile",
     rating: 4.5,
@@ -44,6 +48,8 @@ export const products = [
   {
     _id: uuid(),
     title: "OnePlus 10 Pro 5G",
+    thumbnail:
+      "https://encrypted-tbn3.gstatic.com/shopping?q=tbn:ANd9GcQjvw31TOkkj0CKpBJ4Z3zT-ulGUhz0ZMIDlBCUMcSCVMGdQ0PC9EeqDQQeKlPJ9Lp51jvTFVbGXOneoVhXeQlIBNmAFJ-b1Fp8L1ZKmS05g_fx7RwrZAGPgKCqlHU_Rar0cZA&usqp=CAc",
     price: 60999,
     categoryName: "Mobile",
     rating: 2.5,
@@ -62,6 +68,8 @@ export const products = [
   {
     _id: uuid(),
     title: "Samsung Galaxy S22 5G",
+    thumbnail:
+      "https://images.unsplash.com/photo-1662216927315-a763aa98a3d5?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8NXx8c2Ftc3VuZyUyMHMyMnxlbnwwfHwwfHx8MA%3D%3D&auto=format&fit=crop&w=500&q=60",
     price: 66999,
     categoryName: "Mobile",
     rating: 3.5,
@@ -80,6 +88,8 @@ export const products = [
   {
     _id: uuid(),
     title: "Asus TUF Gaming A15",
+    thumbnail:
+      "https://img.freepik.com/free-photo/laptop-sofa_144627-38562.jpg?size=626&ext=jpg&ga=GA1.2.353056144.1686079375&semt=ais",
     price: 64999,
     categoryName: "Laptop",
     rating: 4.2,
@@ -98,6 +108,8 @@ export const products = [
   {
     _id: uuid(),
     title: "Dell Inspiron 3511",
+    thumbnail:
+      "https://img.freepik.com/free-photo/laptop-leather-couch_53876-127273.jpg?size=626&ext=jpg&ga=GA1.2.353056144.1686079375&semt=sph",
     price: 44999,
     categoryName: "Laptop",
     rating: 3.7,
@@ -116,6 +128,8 @@ export const products = [
   {
     _id: uuid(),
     title: "Lenovo IdeaPad Flex 5",
+    thumbnail:
+      "https://img.freepik.com/free-photo/desktop-with-laptop_23-2148128825.jpg?size=626&ext=jpg&ga=GA1.2.353056144.1686079375&semt=sph",
     price: 66999,
     categoryName: "Laptop",
     rating: 1.6,
@@ -134,6 +148,8 @@ export const products = [
   {
     _id: uuid(),
     title: "HP Pavilion x360 2-in-1",
+    thumbnail:
+      "https://img.freepik.com/free-photo/view-electronic-product-balancing-podium_23-2150141319.jpg?size=626&ext=jpg&ga=GA1.2.353056144.1686079375&semt=ais",
     price: 57999,
     categoryName: "Laptop",
     rating: 2.9,
@@ -152,6 +168,8 @@ export const products = [
   {
     _id: uuid(),
     title: "Samsung 108 cm (43 inches) Series 5",
+    thumbnail:
+      "https://encrypted-tbn1.gstatic.com/shopping?q=tbn:ANd9GcTOqhltNI1Qj0rDs2HSYiGIJzEXnnBpYRGY7z3TymYsQiWndOPq0EY9xm6MbKxy0-AAcGvlsr1fOBcgHe4N2DxowLP9Q6jRJytyeo8ZbLowOZQnmgAW5ODmiN6IsLFY0TUpgEY&usqp=CAc",
     price: 31612,
     categoryName: "Television",
     rating: 3.9,
@@ -170,6 +188,8 @@ export const products = [
   {
     _id: uuid(),
     title: "Sony 108 cm (43 inches) W830K HD Smart Tv",
+    thumbnail:
+      "https://encrypted-tbn3.gstatic.com/shopping?q=tbn:ANd9GcRqYSZY47940m4nyKhKZQcPUla9JzBnpbLheKRqmT9YktMysnBs7_-UkLOl0lUNPZVD2Oih1OqsZQO0VdbyaWJgjRSx25EruXBehgrEmz9X3EPWjOuTrvUywoJueh23vfJ6Eg&usqp=CAc",
     price: 40840,
     categoryName: "Television",
     rating: 4.6,
@@ -188,6 +208,8 @@ export const products = [
   {
     _id: uuid(),
     title: "OnePlus 32 (80cm) 32Y1S Edge HD",
+    thumbnail:
+      "https://img.freepik.com/premium-psd/tv-living-room-mockup_1150-38395.jpg?size=626&ext=jpg&ga=GA1.1.353056144.1686079375&semt=sph",
     price: 13999,
     categoryName: "Television",
     rating: 2.8,
@@ -206,6 +228,8 @@ export const products = [
   {
     _id: uuid(),
     title: "LG 80 cm (32 inches) LQ63 HD Smart LED TV",
+    thumbnail:
+      "https://images.unsplash.com/photo-1495563125611-fa99f0cd529f?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8NHx8dGVsZXZpc2lvbnxlbnwwfDF8MHx8fDA%3D&auto=format&fit=crop&w=500&q=60",
     price: 23270,
     categoryName: "Television",
     rating: 3.8,
@@ -224,6 +248,8 @@ export const products = [
   {
     _id: uuid(),
     title: "HyperX Alloy Origins Core Tenkeyless Mechanical Gaming Keyboard",
+    thumbnail:
+      "https://images.unsplash.com/photo-1561112078-7d24e04c3407?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8M3x8a2V5Ym9hcmR8ZW58MHwxfDB8fHww&auto=format&fit=crop&w=500&q=60",
     price: 7457,
     categoryName: "Accessories",
     rating: 4.1,
@@ -242,6 +268,8 @@ export const products = [
   {
     _id: uuid(),
     title: "Lenovo 300 Wireless Compact Mouse, High Resolution 1000 DPI",
+    thumbnail:
+      "https://images.unsplash.com/photo-1607677686474-ad91fc94f5ae?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MTB8fG1vdXNlfGVufDB8MXwwfHx8MA%3D%3D&auto=format&fit=crop&w=500&q=60",
     price: 749,
     categoryName: "Accessories",
     rating: 3.6,
@@ -260,6 +288,8 @@ export const products = [
   {
     _id: uuid(),
     title: "Apple MagSafe Charger",
+    thumbnail:
+      "https://images.unsplash.com/photo-1615526675159-e248c3021d3f?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MXx8bWFnc2FmZXxlbnwwfDF8MHx8fDA%3D&auto=format&fit=crop&w=500&q=60",
     price: 3999,
     categoryName: "Accessories",
     rating: 4.8,
