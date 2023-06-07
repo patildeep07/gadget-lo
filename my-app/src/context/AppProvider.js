@@ -9,6 +9,8 @@ import axios from "axios";
 import { useNavigate } from "react-router-dom";
 import { AuthContext } from "./AuthProvider";
 
+import { toast } from "react-toastify";
+
 export const AppContext = createContext();
 
 export const AppProvider = ({ children }) => {
@@ -254,7 +256,7 @@ export const AppProvider = ({ children }) => {
         return response;
       }
     } catch (error) {
-      alert(error);
+      toast.error(error);
     }
   };
 
@@ -269,7 +271,7 @@ export const AppProvider = ({ children }) => {
         });
       }
     } catch (error) {
-      alert(error);
+      toast.error(error);
     }
   };
 
@@ -291,13 +293,13 @@ export const AppProvider = ({ children }) => {
         if (status === 201) {
           setAllData({ type: "SET_CART_ITEMS", payload: data?.cart });
 
-          alert("Added to cart");
+          toast.success(`${givenProduct.title} Added to cart`);
         }
       } else {
         navigate("/login");
       }
     } catch (error) {
-      alert(error);
+      toast.error(error);
     }
   };
 
@@ -315,10 +317,10 @@ export const AppProvider = ({ children }) => {
 
       if (status === 200) {
         setAllData({ type: "SET_CART_ITEMS", payload: data?.cart });
-        alert(`Quantity has been ${type}ed`);
+        toast.success(`Quantity has been ${type}ed`);
       }
     } catch (error) {
-      alert(error);
+      toast.error(error);
     }
   };
 
@@ -335,10 +337,10 @@ export const AppProvider = ({ children }) => {
 
       if (status === 200) {
         setAllData({ type: "SET_CART_ITEMS", payload: data?.cart });
-        alert("Product removed from cart.");
+        toast.success(`${givenProduct.title} has been removed from cart.`);
       }
     } catch (error) {
-      alert(error);
+      toast.error(error);
     }
   };
 
@@ -364,7 +366,7 @@ export const AppProvider = ({ children }) => {
         return response;
       }
     } catch (error) {
-      alert(error);
+      toast.error(error);
     }
   };
 
@@ -379,7 +381,7 @@ export const AppProvider = ({ children }) => {
         });
       }
     } catch (error) {
-      alert(error);
+      toast.error(error);
     }
   };
 
@@ -401,13 +403,13 @@ export const AppProvider = ({ children }) => {
         if (status === 201) {
           setAllData({ type: "SET_WISHLIST_ITEMS", payload: data?.wishlist });
 
-          alert("Added to wishlist");
+          toast.success(`${givenProduct.title} has been added to wishlist`);
         }
       } else {
         navigate("/login");
       }
     } catch (error) {
-      alert(error);
+      toast.error(error);
     }
   };
 
@@ -424,10 +426,10 @@ export const AppProvider = ({ children }) => {
 
       if (status === 200) {
         setAllData({ type: "SET_WISHLIST_ITEMS", payload: data?.wishlist });
-        alert("Product removed from wishlist.");
+        toast.success(`${givenProduct.title} has been removed from wishlist.`);
       }
     } catch (error) {
-      alert(error);
+      toast.error(error);
     }
   };
 

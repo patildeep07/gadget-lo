@@ -1,6 +1,7 @@
 import { useContext, useState } from "react";
 import { AppContext } from "../context/AppProvider";
 import { v4 as uuid } from "uuid";
+import { toast } from "react-toastify";
 
 export const NewAddressInput = ({ setAddNewAddress }) => {
   const { setAllData } = useContext(AppContext);
@@ -18,7 +19,7 @@ export const NewAddressInput = ({ setAddNewAddress }) => {
     e.preventDefault();
     setAllData({ type: "SET_USER_ADDRESS", payload: addressForm });
     setAddNewAddress(false);
-    alert("New Address Added");
+    toast.success("New Address Added");
   };
   return (
     <div>

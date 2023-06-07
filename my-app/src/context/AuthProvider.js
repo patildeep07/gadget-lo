@@ -2,6 +2,8 @@ import { createContext, useReducer, useState } from "react";
 import axios from "axios";
 import { useLocation, useNavigate } from "react-router-dom";
 
+import { toast } from "react-toastify";
+
 export const AuthContext = createContext();
 
 export const AuthProvider = ({ children }) => {
@@ -14,7 +16,7 @@ export const AuthProvider = ({ children }) => {
     try {
       const { status, data } = await axios.post("/api/auth/login", credentials);
       if (status === 200) {
-        alert("Success");
+        toast.success("Logged in successfully");
         localStorage.setItem("token", data?.encodedToken);
         authDispatch({ type: "LOG_IN" });
         authDispatch({ type: "SET_USER", payload: data?.foundUser });
@@ -22,7 +24,7 @@ export const AuthProvider = ({ children }) => {
         navigate(location?.state?.from?.pathname);
       }
     } catch (error) {
-      alert("Incorrect id or password");
+      toast.error("Incorrect id or password");
       authDispatch({ type: "LOG_OUT" });
     }
   };
@@ -37,7 +39,7 @@ export const AuthProvider = ({ children }) => {
       );
 
       if (status === 200) {
-        alert("User created");
+        toast.success("User created");
         localStorage.setItem("token", data?.encodedToken);
         authDispatch({ type: "LOG_IN" });
         authDispatch({ type: "SET_USER", payload: data?.createdUser });
@@ -45,7 +47,7 @@ export const AuthProvider = ({ children }) => {
         navigate(location?.state?.from?.pathname);
       }
     } catch (error) {
-      console.log(error);
+      toast.error(error);
       authDispatch({ type: "LOG_OUT" });
     }
   };
@@ -58,7 +60,7 @@ export const AuthProvider = ({ children }) => {
     authDispatch({ type: "SET_USER", payload: [] });
     authDispatch({ type: "SET_TOKEN", payload: "" });
     navigate("/");
-    alert("You've been logged out!");
+    toast.error("You've been logged out!");
   };
 
   //   Reducer function below

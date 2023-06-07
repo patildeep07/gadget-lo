@@ -13,7 +13,7 @@ export const DisplayCartProducts = ({ product }) => {
   } = useContext(AppContext);
   return (
     <div className="flex-row-space-evenly">
-      <img src={thumbnail}></img>
+      <img src={thumbnail} alt="Cart items"></img>
       <div>
         <h1>{title}</h1>
         <h3>Price: INR {price}</h3>

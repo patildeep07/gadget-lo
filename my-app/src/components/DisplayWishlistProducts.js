@@ -16,7 +16,7 @@ export const DisplayWishlistProducts = ({ product }) => {
 
   return (
     <div className="flex-row-space-evenly">
-      <img src={thumbnail}></img>
+      <img src={thumbnail} alt="wishlist item"></img>
       <div>
         <h1>{title}</h1>
 

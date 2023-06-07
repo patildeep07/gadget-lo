@@ -15,8 +15,12 @@ import { SingleItem } from "./pages/SingleItem";
 import { Checkout } from "./pages/Checkout";
 import { OrderPlaced } from "./pages/OrderPlaced";
 
+// Toast
+import { ToastContainer } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
+
 function App() {
-  const { loggedIn, auth } = useContext(AuthContext);
+  const { auth } = useContext(AuthContext);
   const { isLoggedIn } = auth;
   return (
     <div className="App">
@@ -43,6 +47,8 @@ function App() {
         <Route path="*" element={<h1>This page doesn't exist...</h1>}></Route>
         <Route path="/mockman" element={<Mockman />}></Route>
       </Routes>
+
+      <ToastContainer position="bottom-left" />
     </div>
   );
 }
