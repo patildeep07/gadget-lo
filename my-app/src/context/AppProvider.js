@@ -54,6 +54,7 @@ export const AppProvider = ({ children }) => {
           productList: [...dataProducts.products],
           storeList: [...dataProducts.products],
         });
+        setAllData({ type: "LOADING_FALSE" });
       }
 
       const { status: categoryStatus, data: dataCategories } = await axios.get(
@@ -208,6 +209,11 @@ export const AppProvider = ({ children }) => {
           orderCart: action.payloadCart,
           orderTotal: action.payloadTotal,
         };
+      case "LOADING_FALSE":
+        return {
+          ...state,
+          loading: false,
+        };
       default:
         return { ...state };
     }
@@ -226,6 +232,7 @@ export const AppProvider = ({ children }) => {
     orderAddress: [],
     orderCart: [],
     orderTotal: 0,
+    loading: true,
   });
 
   // Destructuring data
