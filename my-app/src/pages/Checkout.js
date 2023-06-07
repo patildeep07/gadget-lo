@@ -1,12 +1,10 @@
 import { useContext, useState } from "react";
-import { Link, useNavigate } from "react-router-dom";
+import { Link } from "react-router-dom";
 import { AppContext } from "../context/AppProvider";
-import { AddressComponent } from "../components/AddressComponent";
 
 export const Checkout = () => {
   const { allData, setAllData } = useContext(AppContext);
   const { cart } = allData;
-  const navigate = useNavigate();
 
   const [selectedAddress, setSelectedAddress] = useState(allData.address[0]);
 
@@ -52,7 +50,7 @@ export const Checkout = () => {
                 mobileNumber,
               }) => {
                 return (
-                  <div className="flex-row-space-evenly">
+                  <div className="flex-row-space-evenly" key={addressId}>
                     <input
                       type="radio"
                       checked={selectedAddress.id === addressId}

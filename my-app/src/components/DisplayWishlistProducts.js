@@ -3,11 +3,9 @@ import { AppContext } from "../context/AppProvider";
 import { useNavigate } from "react-router-dom";
 
 export const DisplayWishlistProducts = ({ product }) => {
-  const { title, categoryName, price, rating, inCart, inWishlist, qty, _id } =
-    product;
+  const { title, _id } = product;
   const {
     addToCart,
-    removeFromCart,
     addToWishlist,
     removeFromWishlist,
     isInCart,

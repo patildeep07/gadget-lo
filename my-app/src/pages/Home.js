@@ -19,7 +19,7 @@ export const Home = () => {
         {categoryData.map((category) => {
           const { _id, categoryName, description } = category;
           return (
-            <Link to="/store">
+            <Link to="/store" key={_id}>
               <div
                 key={_id}
                 className="category-box"

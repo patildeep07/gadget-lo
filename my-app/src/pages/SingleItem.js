@@ -27,14 +27,13 @@ export const SingleItem = () => {
               categoryName,
               price,
               rating,
-              inCart,
-              inWishlist,
               features,
               _id,
             } = item;
             return (
               <div className="flex-row-space-evenly">
                 <img
+                  alt="product"
                   src={thumbnail}
                   style={{ width: "350px", height: "400px" }}
                 ></img>

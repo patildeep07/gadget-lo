@@ -4,7 +4,7 @@ import { AppContext } from "../context/AppProvider";
 export const OrderPlaced = () => {
   const { allData } = useContext(AppContext);
   const { orderAddress, orderCart, orderTotal } = allData;
-  const { id, name, house, city, state, country, pincode, mobileNumber } =
+  const { name, house, city, state, country, pincode, mobileNumber } =
     orderAddress;
   return (
     <div>
