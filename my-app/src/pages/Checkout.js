@@ -1,14 +1,28 @@
-import { useContext } from "react";
-import { Link } from "react-router-dom";
+import { useContext, useState } from "react";
+import { Link, useNavigate } from "react-router-dom";
 import { AppContext } from "../context/AppProvider";
 import { AddressComponent } from "../components/AddressComponent";
 
 export const Checkout = () => {
-  const { allData } = useContext(AppContext);
+  const { allData, setAllData } = useContext(AppContext);
   const { cart } = allData;
+  const navigate = useNavigate();
+
+  const [selectedAddress, setSelectedAddress] = useState(allData.address[0]);
 
   const cartValue = cart.reduce((acc, { price, qty }) => acc + qty * price, 0);
   const deliveryCharges = 250;
+  const totalAmount = cartValue + deliveryCharges;
+
+  const buyNowHandler = () => {
+    setAllData({
+      type: "PLACE_ORDER",
+      payloadAddress: selectedAddress,
+      payloadCart: [...cart],
+      payloadTotal: totalAmount,
+    });
+  };
+
   return (
     <div>
       <h1>Checkout</h1>
@@ -22,8 +36,51 @@ export const Checkout = () => {
               </li>
             ))}
           </ol>
+
           <h3>Select an Address</h3>
+
+          <div>
+            {allData.address.map(
+              ({
+                id: addressId,
+                name,
+                house,
+                city,
+                state,
+                country,
+                pincode,
+                mobileNumber,
+              }) => {
+                return (
+                  <div className="flex-row-space-evenly">
+                    <input
+                      type="radio"
+                      checked={selectedAddress.id === addressId}
+                      onChange={(e) => {
+                        setSelectedAddress((prev) => ({
+                          ...prev,
+                          ...allData.address.find(({ id }) => id === addressId),
+                        }));
+                      }}
+                    />
+                    <div>
+                      <p>Name: {name}</p>
+                      <p>
+                        Address: {house},{city},{state}
+                      </p>
+                      <p>
+                        Pincode: {pincode},{country}
+                      </p>
+                      <p>Phone Number: {mobileNumber}</p>
+                    </div>
+                  </div>
+                );
+              }
+            )}
+          </div>
         </div>
+
+        {/* Order summary */}
         <div className="order-summary">
           <h3>Order Summary</h3>
 
@@ -34,10 +91,12 @@ export const Checkout = () => {
             <p>Delivery charges: INR {deliveryCharges}</p>
           </div>
           <div>
-            <p>Total charges: INR {cartValue + deliveryCharges}</p>
+            <p>Total charges: INR {totalAmount}</p>
           </div>
           <div>
             <Link
+              onClick={buyNowHandler}
+              to="/order-placed"
               style={{
                 margin: "5px 10px",
                 color: "green",
@@ -48,6 +107,7 @@ export const Checkout = () => {
             </Link>
             <Link
               style={{ margin: "5px 10px", color: "red", fontWeight: "bolder" }}
+              to="/"
             >
               Cancel
             </Link>

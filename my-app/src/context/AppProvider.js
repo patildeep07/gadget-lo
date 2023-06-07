@@ -199,6 +199,13 @@ export const AppProvider = ({ children }) => {
             (addressItem) => addressItem.id !== action.payload
           ),
         };
+      case "PLACE_ORDER":
+        return {
+          ...state,
+          orderAddress: action.payloadAddress,
+          orderCart: action.payloadCart,
+          orderTotal: action.payloadTotal,
+        };
       default:
         return { ...state };
     }
@@ -214,6 +221,9 @@ export const AppProvider = ({ children }) => {
     cart: [],
     wishlist: [],
     address: defaultAddress,
+    orderAddress: [],
+    orderCart: [],
+    orderTotal: 0,
   });
 
   // Destructuring data
