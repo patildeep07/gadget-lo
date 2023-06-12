@@ -59,14 +59,32 @@
 }
 
 .category-box {
-  background-color: antiquewhite;
+  /* background-color: antiquewhite; */
   border-radius: 5px;
+  border: 1px solid lightgray;
   padding: 20px;
   margin: 20px;
   width: 500px;
-  height: 200px;
+  height: 300px;
+
+  color: aliceblue;
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 
 .category-box:hover {
-  background-color: beige;
+  box-shadow: 5px 5px 15px rgb(69, 69, 69);
+}
+
+.category-box .dark-overlay {
+  visibility: hidden;
+}
+
+.category-box:hover .dark-overlay {
+  visibility: visible;
+  background-color: rgba(0, 0, 0, 0.666);
+  transition: ease-in 1s;
+  padding: 10px;
 }
